@@ -58,7 +58,15 @@ namespace mydz2_v2
         }
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int p = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
+            int p;
+            try
+            {
+                p = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value.ToString());
+            }
+            catch (Exception)
+            {
+                p = 0;
+            }
             UpdateEventForm ueF = new UpdateEventForm(this, p);
             ueF.Show();
         }

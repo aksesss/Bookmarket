@@ -16,8 +16,8 @@ namespace UnitTests
         {
             string eventType = "TEST";
             string place = "someplace";
-            string date = ("01-01-2020");
-            string time = ("14:20");
+            string date = "01-01-2020";
+            string time = "14:20";
 
             Error res = TransactionScripts.createEvent(eventType, place, date, time);
 
@@ -40,17 +40,35 @@ namespace UnitTests
     [TestClass]
     public class TestGetEvent
     {
+        /// <summary>
+        ///id in DB 
+        /// </summary>
         [TestMethod]
         public void TestMethodVClass()
         {
             int id = 2;
             DataTable dt = TransactionScripts.getEventById(id);
-            bool res = (dt != null);
+            bool res = (dt.Rows.Count != 0);
             Assert.IsTrue(res);
         }
 
+        /// <summary>
+        /// id > 0   and  id not in DB
+        /// </summary>
         [TestMethod]
-        public void TestMethodGetEventInvClass()
+        public void TestMethodGetEventInvClass1()
+        {
+            int id = -2;
+            DataTable dt = TransactionScripts.getEventById(id);
+            bool res = (dt.Rows.Count == 0);
+            Assert.IsTrue(res);
+        }
+        
+        /// <summary>
+        /// id <= 0
+        /// </summary>
+        [TestMethod]
+        public void TestMethodGetEventInvClass2()
         {
             int id = -1;
             DataTable dt = TransactionScripts.getEventById(id);
@@ -59,6 +77,26 @@ namespace UnitTests
         }
 
     }
-
+    
+    [TestClass]
     public class TestEncryption
+    {
+        [TestMethod]
+        public void TestValidation()
+        {
+            string password = "testpassword";
+
+            string hash = encryption.HashPassword(password);
+            Assert.IsTrue(encryption.VerifyHashedPassword(hash, "testpassword"));
+        }
+
+        public void TestHasing()
+        {
+            string password = "testpassword";
+            string hash1 = encryption.HashPassword(password);
+            string hash2 = encryption.HashPassword(password);
+            string hash3 = encryption.HashPassword(password);
+            Assert.IsFalse((hash1 == hash2) || (hash1 == hash3) || (hash2 == hash3));
+        }
+    }
 }

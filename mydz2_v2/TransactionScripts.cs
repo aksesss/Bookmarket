@@ -97,16 +97,16 @@ namespace mydz2_v2
         {
             Error res;
             DateTime dtime;
-            DateTime.TryParse(
-                $"{date} {time}",
-                System.Globalization.CultureInfo.CurrentCulture,
-                System.Globalization.DateTimeStyles.AssumeLocal,
-                out dtime
-            );
-
             Event ev = new Event();
             try
             {
+                DateTime.TryParse(
+                        $"{date} {time}",
+                        System.Globalization.CultureInfo.CurrentCulture,
+                        System.Globalization.DateTimeStyles.AssumeLocal,
+                        out dtime
+                    );
+
                 ev.eventType = eventType;
                 ev.place = place;
                 ev.date = dtime;
