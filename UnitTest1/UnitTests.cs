@@ -58,7 +58,7 @@ namespace UnitTests
         [TestMethod]
         public void TestMethodGetEventInvClass1()
         {
-            int id = -2;
+            int id = -1;
             DataTable dt = TransactionScripts.getEventById(id);
             bool res = (dt.Rows.Count == 0);
             Assert.IsTrue(res);
@@ -70,12 +70,11 @@ namespace UnitTests
         [TestMethod]
         public void TestMethodGetEventInvClass2()
         {
-            int id = -1;
+            int id = 100000;
             DataTable dt = TransactionScripts.getEventById(id);
             bool res = (dt.Rows.Count == 0);
             Assert.IsTrue(res);
         }
-
     }
     
     [TestClass]
