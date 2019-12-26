@@ -168,7 +168,7 @@ namespace mydz2_v2
             {
                 query = $"INSERT INTO {this.GetType().Name} VALUES('{eventType}', '{place}', " +
                                                                     $"'{date.ToString("yyyy-MM-dd HH:mm:ss")}')";
-                inDB = true;
+
             }
             else
             {
@@ -178,6 +178,7 @@ namespace mydz2_v2
                                                            $" WHERE id={id.ToString()}";
             }
             DBConnection.execute(query);
+            inDB = true;
         }
         /*
         public void delete()

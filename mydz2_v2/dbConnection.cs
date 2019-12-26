@@ -19,14 +19,24 @@ namespace mydz2_v2
 
         public static void execute(string query)
         {
-            con.Open();
+            try
+            {
+                con.Open();
+                SqlCommand sqlcommand = new SqlCommand(query, con);
+                sqlcommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                con.Close();
+            }
             
-            SqlCommand sqlcommand = new SqlCommand(query, con);
-            sqlcommand.ExecuteNonQuery();
             //SqlDataAdapter da = new SqlDataAdapter(sqlcommand);
             //da.Fill();
 
-            con.Close();
 
         }
 

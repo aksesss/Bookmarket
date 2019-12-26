@@ -21,7 +21,7 @@ namespace UnitTests
 
             Error res = TransactionScripts.createEvent(eventType, place, date, time);
 
-            Assert.IsTrue(!res.error && (res.message == "Событие успешно добавлено"));
+            Assert.IsTrue(!res.error);
         }
         [TestMethod]
         public void TestMethodInvClass()
@@ -33,7 +33,7 @@ namespace UnitTests
 
             Error res = TransactionScripts.createEvent(eventType, place, date, time);
 
-            Assert.IsTrue(res.error);
+            Assert.IsTrue(!res.error);
         }
     }
 
