@@ -1,0 +1,1 @@
+﻿Update Event set place = 'somePlacee' where id=9
